@@ -1,0 +1,58 @@
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.edit {
+	padding: 2rem;
+	position: relative;
+	transform: translate(-50%, -50%);
+	top: 40%;
+	left: 50%;
+	background-color: var(--color-white);
+	min-height: 250px;
+	max-width: 800px;
+	border-radius: var(--small-radius);
+
+	& h2 {
+		margin-bottom: 0.8rem;
+	}
+}
+
+.editForm {
+	display: flex;
+	flex-direction: column;
+}
+
+.editBtn {
+	justify-self: flex-end;
+	border-radius: var(--small-radius);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 700;
+	background-color: var(--light-green);
+	padding: 0.5rem 1rem;
+
+	& b {
+		margin-left: 0.6rem;
+		font-size: 1.8rem;
+	}
+}
+
+.editField {
+	margin-bottom: 0.8rem;
+	padding: 0.5rem;
+}
+.editClose {
+	color: crimson;
+	font-weight: 700;
+	font-size: 2rem;
+	position: absolute;
+	top: 0.5rem;
+	right: 1rem;
+}

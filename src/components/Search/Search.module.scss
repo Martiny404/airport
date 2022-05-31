@@ -1,0 +1,26 @@
+.search {
+	font-size: 1.2rem;
+	width: 100%;
+	padding: 0.4rem 2rem 0.6rem 0.1rem;
+}
+
+.searchWrapper {
+	margin-bottom: 1rem;
+	max-width: 400px;
+	position: relative;
+	& button {
+		top: 9px;
+		right: 0.4rem;
+		position: absolute;
+		font-size: 1.5rem;
+	}
+}
+.select {
+	font-size: 1.2rem;
+	min-width: 200px;
+	max-width: 400px;
+}
+
+.searchBlock {
+	margin-bottom: 0.7rem;
+}
