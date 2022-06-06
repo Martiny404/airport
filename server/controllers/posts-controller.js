@@ -11,11 +11,6 @@ class PostController {
 		res.json(newPost.rows[0]);
 	}
 
-	async getPosts(req, res) {
-		const posts = await db.query('SELECT * from posts;');
-		res.json(posts.rows);
-	}
-
 	async getOnePost(req, res) {
 		const id = req.params.id;
 		const post = await db.query('SELECT * from posts where id=$1;', [id]);
@@ -23,13 +18,12 @@ class PostController {
 	}
 
 	async updatePost(req, res) {
-		// const { id, name, surname } = req.body;
-		// const post = await db.query(
-		// 	'UPDATE posts set name = $1, surname = $2 where id = $3 RETURNING *',
-		// 	[name, surname, id]
-		// );
-		// res.json(post.rows[0]);
-		res.json({ message: 'UPDATE' });
+		const { id, reason } = req.body;
+		const post = await db.query(
+			'UPDATE posts set reason = $1 where id = $2 RETURNING *',
+			[reason, id]
+		);
+		res.json(post.rows[0]);
 	}
 
 	async deletePost(req, res) {

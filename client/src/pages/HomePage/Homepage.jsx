@@ -51,12 +51,6 @@ const Homepage = () => {
 			.then(() => setData(defaultData));
 	};
 
-	const getPosts = () => {
-		axios
-			.get('http://localhost:8080/api/posts/?fio=&reason=&sortBy=')
-			.then((response) => console.log(response.data));
-	};
-
 	const changeInputs = (e) => {
 		const field = e.target.name;
 		setData((prev) => ({ ...prev, [field]: e.target.value }));
@@ -64,13 +58,6 @@ const Homepage = () => {
 
 	return (
 		<div className={styles.home}>
-			<button
-				onClick={getPosts}
-				style={{ position: 'absolute', right: '300px' }}
-				type='button'
-			>
-				ПОЛУЧИТЬ ПОСТЫ
-			</button>
 			<div className={styles.formWrapper}>
 				<h1>Создание записи</h1>
 				<form onSubmit={createPost} className={styles.form}>

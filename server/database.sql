@@ -18,5 +18,15 @@ create TABLE post(
   FOREIGN KEY (user_id) REFERENCES person (id)
 );
 
-SELECT * FROM person
+SELECT * FROM posts
 ORDER BY time_create DESC;
+
+
+
+
+  CREATE DATABASE "apiport"
+  WITH OWNER "postgres"
+  ENCODING 'UTF8'
+  LC_COLLATE = 'ru_RU.UTF-8'
+  LC_CTYPE = 'ru_RU.UTF-8'
+  TEMPLATE = template0;

@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 import styles from './Modal.module.scss';
 import { BiCheck, BiWindowClose } from 'react-icons/bi';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-const Modal = ({ setOpen }) => {
+const Modal = ({ setOpen, post }) => {
+	const navigator = useNavigate();
 	const [newData, setNewData] = useState('');
 	const editPost = (e) => {
 		e.preventDefault();
-		console.log('edited');
+		axios
+			.put('http://localhost:8080/api/posts', {
+				...post,
+				reason: newData,
+			})
+			.then(() => navigator(0));
 	};
 
 	return (
@@ -18,15 +26,20 @@ const Modal = ({ setOpen }) => {
 				</button>
 				<form className={styles.editForm} onSubmit={editPost}>
 					<input
+						placeholder='причина'
 						value={newData}
 						onChange={(e) => setNewData(e.target.value)}
 						className={styles.editField}
 						type='text'
 					/>
-					<input className={styles.editField} type='text' />
-					<input className={styles.editField} type='text' />
-					<input className={styles.editField} type='text' />
-					<input className={styles.editField} type='text' />
+					{/* <input placeholder='Категория' className={styles.editField} type='text' />
+					<input
+						placeholder='Принятые действия'
+						className={styles.editField}
+						type='text'
+					/>
+					<input placeholder='Проблему решал:' className={styles.editField} type='text' />
+					<input placeholder='Примечание' className={styles.editField} type='text' /> */}
 
 					<button className={styles.editBtn}>
 						<span>Закончить редактирование</span>

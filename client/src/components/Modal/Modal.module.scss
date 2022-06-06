@@ -5,13 +5,15 @@
 	right: 0;
 	bottom: 0;
 	background-color: rgba(0, 0, 0, 0.7);
+	z-index: 10000;
 }
 
 .edit {
+	overflow-y: scroll;
 	padding: 2rem;
 	position: relative;
 	transform: translate(-50%, -50%);
-	top: 40%;
+	top: 50%;
 	left: 50%;
 	background-color: var(--color-white);
 	min-height: 250px;

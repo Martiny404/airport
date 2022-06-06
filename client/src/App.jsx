@@ -11,6 +11,7 @@ function App() {
 				<Route path='/' index element={<Homepage />} />
 				<Route path='posts' element={<Postspage />} />
 				<Route path='posts/:id' element={<Singlepostpage />} />
+				<Route path='*' element={<h1>ERROR</h1>} />
 			</Route>
 		</Routes>
 	);

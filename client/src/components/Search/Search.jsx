@@ -1,21 +1,45 @@
-import React from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import styles from './Search.module.scss';
-import { FaSistrix } from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
+import debounce from 'lodash.debounce';
 
-// import debounce from 'lodash.debounce';
 const Search = ({ search, setSearch }) => {
+	const [value, setValue] = useState('');
+
+	const inputRef = useRef();
+
+	const clearInputValue = () => {
+		setValue('');
+		setSearch((prev) => ({ ...prev, search: '' }));
+		inputRef.current.focus();
+	};
+
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	const updateInputSearchValue = useCallback(
+		debounce((v) => {
+			setSearch((prev) => ({ ...prev, search: v }));
+		}, 500),
+		[]
+	);
+
+	const updateAllValues = (v) => {
+		setValue(v);
+		updateInputSearchValue(v.toLowerCase());
+	};
+
 	return (
 		<div className={styles.searchBlock}>
 			<div className={styles.searchWrapper}>
 				<input
+					ref={inputRef}
 					className={styles.search}
-					value={search.search}
-					onChange={(e) => {}}
+					value={value}
+					onChange={(e) => updateAllValues(e.target.value)}
 					type='text'
 					placeholder='Поиск'
 				/>
-				<button>
-					<FaSistrix />
+				<button onClick={clearInputValue}>
+					<FaTimes />
 				</button>
 			</div>
 			<select
@@ -23,7 +47,7 @@ const Search = ({ search, setSearch }) => {
 				value={search.query}
 				className={styles.select}
 			>
-				<option value='DESC'>сначла новые</option>
+				<option value='DESC'>сначала новые</option>
 				<option value='ASC'>сначала старые</option>
 			</select>
 		</div>

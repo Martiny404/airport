@@ -11,16 +11,13 @@ const Singlepostpage = () => {
 	const { id: currentId } = useParams();
 	const [currentPost, setCurrentPost] = useState(null);
 
-	console.log(currentId);
-
 	useEffect(() => {
 		axios
 			.get('http://localhost:8080/api/posts/' + currentId)
-			.then((data) => setCurrentPost(data.data))
-			.catch((e) => console.log(e));
+			.then((data) => setCurrentPost(data.data));
 	}, [currentId]);
 
-	if (currentPost !== null) {
+	if (currentPost !== null && currentPost) {
 		return (
 			<>
 				<button className={styles.goback} onClick={() => navigator(-1)}>
@@ -39,7 +36,7 @@ const Singlepostpage = () => {
 					<span className={styles.postTxt}>
 						Принятые действия: {currentPost.measures_taken}
 					</span>
-					<span className={styles.postTxt}>Проблему решал: {currentPost.FIO}</span>
+					<span className={styles.postTxt}>Проблему решал: {currentPost.fio}</span>
 					<span className={styles.postTxt}>Примечание: {currentPost.note}</span>
 					<button onClick={() => setIsModalOpened(true)} className={styles.postEdit}>
 						<FaPen />
